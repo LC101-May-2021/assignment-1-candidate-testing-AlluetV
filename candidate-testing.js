@@ -34,6 +34,7 @@ function gradeQuiz(candidateAnswers) {
 
   // TODO 1.2c: Let the candidate know if they have answered the question correctly or incorrectly // 
   let grade = 0;
+  let correctAnswersCount = 0;
   for(let i = 0; i < correctAnswers.length ; i++){  
     let myUpAnswer = candidateAnswers[i].toUpperCase();
     let upperAnswer = correctAnswers[i].toUpperCase();
@@ -44,10 +45,16 @@ function gradeQuiz(candidateAnswers) {
       console.log(`Your answer is ${candidateAnswers[i]} \nThe correct answer is ${correctAnswers[i]}.\n`);
     }else{ 
       console.log(`Your answer is ${candidateAnswers[i]} \nThe correct answer is ${correctAnswers[i]}.\n`);
-      grade ++;
+      correctAnswersCount ++;
     }
   }
-  grade = grade / correctAnswers.length * 100;
+  grade = correctAnswersCount / correctAnswers.length * 100;
+  console.log(`>>> Overall Grade: ${grade}% (${correctAnswersCount} of 5 responses correct) <<<`);
+  if(grade >= 80){
+    console.log(">>> Status: PASS <<<");
+  }else{
+    console.log(">>> Status: FAILED <<<");
+  }
   //console.log(correctAnswers);
   return grade;
 }
@@ -57,13 +64,8 @@ function runProgram() {
   // TODO 1.1c: Ask for candidate's name //
   console.log("Hello " + candidateName + "!");
   askQuestion();
-  let grade = gradeQuiz(this.candidateAnswers);
-  console.log(`>>> Overall Grade: ${grade}% (${grade*correctAnswers.length/100} of 5 responses correct) <<<`);
-  if(grade >= 4){
-    console.log(">>> Status: PASS <<<");
-  }else{
-    console.log(">>> Status: FAILED <<<");
-  }
+  gradeQuiz(this.candidateAnswers);
+  
 }
 
 // Don't write any code below this line //
