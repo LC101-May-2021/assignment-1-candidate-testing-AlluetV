@@ -47,6 +47,7 @@ function gradeQuiz(candidateAnswers) {
       grade ++;
     }
   }
+  grade = grade / correctAnswers.length * 100;
   //console.log(correctAnswers);
   return grade;
 }
@@ -57,7 +58,7 @@ function runProgram() {
   console.log("Hello " + candidateName + "!");
   askQuestion();
   let grade = gradeQuiz(this.candidateAnswers);
-  console.log(`>>> Overall Grade: ${grade / correctAnswers.length * 100}% (${grade} of 5 responses correct) <<<`);
+  console.log(`>>> Overall Grade: ${grade}% (${grade*correctAnswers.length/100} of 5 responses correct) <<<`);
   if(grade >= 4){
     console.log(">>> Status: PASS <<<");
   }else{
